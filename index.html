@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday, Chitti!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Dancing+Script:wght@600&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff6e6; --bg2:#ffe9c2; --ink:#4a1020; --muted:#7a4a3a; --accent:#8c1c33; --gold:#e8a317; --card:#ffffffcc; --line:#e8a31766;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#2a0a14; --bg2:#3d0f1e; --ink:#fde9cf; --muted:#e6c3a0; --accent:#ff8fa3; --gold:#ffc247; --card:#4a1424cc; --line:#ffc24766;}
+}
+:root[data-theme="dark"]{--bg:#2a0a14; --bg2:#3d0f1e; --ink:#fde9cf; --muted:#e6c3a0; --accent:#ff8fa3; --gold:#ffc247; --card:#4a1424cc; --line:#ffc24766;}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Lato,system-ui,sans-serif;line-height:1.8;overflow-x:hidden}
+h1,h2{font-family:'Playfair Display',Georgia,serif;margin:0}
+.script{font-family:'Dancing Script',cursive,Georgia,serif}
+#gate{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:radial-gradient(circle at 50% 40%,var(--bg2),var(--bg));text-align:center;padding:24px;transition:opacity .9s,visibility .9s}
+#gate.gone{opacity:0;visibility:hidden}
+#gift{font-size:96px;background:none;border:0;cursor:pointer;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px) rotate(-4deg)}}
+#gate p{margin:0;color:var(--muted)}
+.hero,.sec{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:64px 22px;position:relative}
+.hero{background:radial-gradient(circle at 50% 30%,var(--bg2),var(--bg))}
+.hero h1{font-size:clamp(2.4rem,9vw,5rem);color:var(--accent);line-height:1.15}
+.hero .script{font-size:clamp(1.5rem,5vw,2.2rem);color:var(--gold);margin-bottom:8px}
+.hero p{max-width:520px;color:var(--muted)}
+.arrow{margin-top:30px;font-size:28px;animation:bob 1.8s infinite;color:var(--gold)}
+.sec:nth-of-type(even){background:linear-gradient(var(--bg),var(--bg2),var(--bg))}
+.sec h2{font-size:clamp(1.6rem,5vw,2.6rem);color:var(--accent);margin-bottom:18px}
+.sec h2::after{content:"";display:block;width:70px;height:3px;background:var(--gold);margin:12px auto 0;border-radius:3px}
+.card{max-width:640px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px 26px;backdrop-filter:blur(6px);box-shadow:0 10px 40px #8c1c3322;font-size:1.08rem}
+.card p{margin:0 0 14px}.card p:last-child{margin:0}
+.rev{opacity:0;transform:translateY(40px);transition:opacity 1s,transform 1s}
+.rev.in{opacity:1;transform:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;max-width:640px;width:100%;margin-top:22px}
+.flip{min-height:120px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:18px;padding:14px;font:inherit;cursor:pointer;font-size:.98rem;transition:transform .3s,background .3s}
+.flip:hover{transform:translateY(-3px)}
+.flip.open{background:var(--accent);color:#fff}
+.hint{color:var(--muted);font-size:.9rem;margin-top:8px}
+.btn{margin-top:20px;padding:12px 28px;border-radius:30px;border:0;background:var(--accent);color:#fff;font:700 1rem Lato,sans-serif;cursor:pointer}
+#wish{margin-top:18px;min-height:64px;max-width:520px;font-family:'Dancing Script',cursive,serif;font-size:1.7rem;color:var(--gold)}
+.final h2{font-size:clamp(2.2rem,8vw,4rem)}
+#secret{position:absolute;right:18px;bottom:18px;background:none;border:0;font-size:22px;opacity:.35;cursor:pointer}
+#secretMsg{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) scale(.8);opacity:0;pointer-events:none;background:var(--accent);color:#fff;padding:14px 22px;border-radius:18px;transition:.4s;z-index:40;max-width:90vw;text-align:center}
+#secretMsg.show{opacity:1;transform:translateX(-50%) scale(1)}
+.petal{position:fixed;top:-30px;z-index:5;pointer-events:none;animation:fall linear forwards;opacity:.85}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:45}
+footer{text-align:center;padding:30px 20px 50px;color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){.rev{transition:none;opacity:1;transform:none}.petal,#gift,.arrow{animation:none}}
+</style>
+</head>
+<body>
+<div id="gate">
+  <button id="gift" aria-label="Open your gift">🎁</button>
+  <h2 class="script" style="color:var(--gold);font-size:2rem">Chitti, this is for you…</h2>
+  <p>Tap the gift to open</p>
+</div>
+<canvas id="fx"></canvas>
+<div id="secretMsg">You found the secret heart! You are my whole world, Chitti. 💛</div>
+
+<header class="hero">
+  <div class="script rev">Today is a very special day</div>
+  <h1 class="rev">Happy Birthday,<br>Chitti! 🎂</h1>
+  <p class="rev">My dearest Chitti, my forever favourite person. ❤️🥹<br>Scroll down. Every word here is for you.</p>
+  <div class="arrow">↓</div>
+</header>
+
+<section class="sec">
+  <h2 class="rev">Your Heart</h2>
+  <div class="card rev">
+    <p>If there is one person whose heart I will always admire, it is yours. You have this beautiful way of seeing things in people that many others fail to see, finding goodness where others might not even look, and loving people without expecting anything in return.</p>
+    <p>Your optimism, your strength, and the way you never give up, no matter what life brings your way, make you one of the most inspiring people I know. You are someone I have always looked up to and dreamt of becoming like someday.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <h2 class="rev">Your Faith</h2>
+  <div class="card rev">
+    <p>I love how you find your comfort in Krishna and continue to face life with so much hope and faith. I pray that He always protects your beautiful heart and gives you back all the love and kindness you have given to this world. ❤️🙏🏻</p>
+    <p style="font-size:2rem">🪈 🦚</p>
+  </div>
+</section>
+
+<section class="sec">
+  <h2 class="rev">Our Bond</h2>
+  <div class="card rev">
+    <p>One of my favourite things about us is that no day shall ever pass without us speaking. No matter how busy life gets, you always make sure we talk at least once a day, and that means more to me than you know. Even when I can’t be beside you, that little conversation makes the distance feel smaller. I hope this never changes, no matter how much life changes around us.</p>
+    <p>You have raised me with a love that feels so much like a mother’s, and I will always be grateful for the bond we share. You know I’ve always been possessive about my Chitti, and honestly, I don’t plan on changing! 😂❤️ You can spread your love to the whole world, but I’ll always want my own special place in your heart. I’ll forever be your Cheeanma, and you will forever be my Chitti.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <h2 class="rev">Reasons I Love You</h2>
+  <p class="rev hint">Tap a card to open it 💌</p>
+  <div class="grid rev" id="reasons"></div>
+</section>
+
+<section class="sec">
+  <h2 class="rev">My Wishes for You</h2>
+  <div class="card rev">
+    <p>On your birthday, I wish you endless happiness, good health, peace of mind, and countless reasons to smile. I hope you receive the same unconditional love you so freely give to everyone around you.</p>
+  </div>
+  <button class="btn rev" id="jar">🏺 Open a wish from the jar</button>
+  <div id="wish" aria-live="polite"></div>
+</section>
+
+<section class="sec final">
+  <div class="script rev" style="font-size:2rem;color:var(--gold)">With all my love</div>
+  <h2 class="rev">Happy Birthday, Chitti! 🎉</h2>
+  <div class="card rev" style="margin-top:20px">
+    <p>I may not be there to hug you today, but my heart is always with you. I love you endlessly, and I’ll always be your little Cheeanma. ❤️🧿</p>
+  </div>
+  <button class="btn rev" id="party">🎊 Celebrate!</button>
+  <button id="secret" aria-label="A secret">💛</button>
+</section>
+<footer>Made with love, just for Chitti ❤️</footer>
+
+<script>
+(function(){
+  var reasons=[
+    ["You see goodness","where others don’t even look"],
+    ["You love freely","without expecting anything back"],
+    ["You never give up","no matter what life brings"],
+    ["Your faith","gives you hope and gentle strength"],
+    ["You always call","at least once a day, always"],
+    ["You raised me","with a love like a mother’s"]
+  ];
+  var wishes=["Endless happiness ✨","Good health always 🌿","Peace of mind 🕊️","Countless reasons to smile 😊","Love, returned to you in full ❤️","Krishna’s blessings, every day 🦚"];
+
+  var box=document.getElementById("reasons");
+  reasons.forEach(function(r){
+    var b=document.createElement("button");b.className="flip";b.textContent="💗";
+    b.onclick=function(){
+      var open=b.classList.toggle("open");
+      b.innerHTML=open?"<strong>"+r[0]+"</strong><br>"+r[1]:"💗";
+    };
+    box.appendChild(b);
+  });
+
+  var wi=0,wishEl=document.getElementById("wish");
+  document.getElementById("jar").onclick=function(){wishEl.textContent=wishes[wi%wishes.length];wi++;};
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add("in");});},{threshold:.15});
+  document.querySelectorAll(".rev").forEach(function(el){io.observe(el);});
+
+  var emojis=["🌸","🌼","🌺","🪔","✨"],petalTimer;
+  function petal(){
+    var p=document.createElement("div");p.className="petal";
+    p.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    p.style.left=Math.random()*100+"vw";
+    p.style.fontSize=(14+Math.random()*16)+"px";
+    p.style.animationDuration=(7+Math.random()*7)+"s";
+    document.body.appendChild(p);
+    setTimeout(function(){p.remove();},15000);
+  }
+
+  var cv=document.getElementById("fx"),cx=cv.getContext("2d"),parts=[],running=false;
+  function size(){cv.width=innerWidth;cv.height=innerHeight;}size();addEventListener("resize",size);
+  function confetti(){
+    var cols=["#e8a317","#8c1c33","#ff8fa3","#ffd27a","#c2185b","#fff"];
+    for(var i=0;i<140;i++)parts.push({x:innerWidth/2,y:innerHeight*0.6,vx:(Math.random()-.5)*14,vy:-Math.random()*16-4,s:4+Math.random()*6,c:cols[i%cols.length],r:Math.random()*6});
+    if(!running){running=true;loop();}
+  }
+  function loop(){
+    cx.clearRect(0,0,cv.width,cv.height);
+    parts.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.r+=.2;cx.fillStyle=p.c;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);cx.restore();});
+    parts=parts.filter(function(p){return p.y<cv.height+20;});
+    if(parts.length)requestAnimationFrame(loop);else{running=false;cx.clearRect(0,0,cv.width,cv.height);}
+  }
+
+  document.getElementById("gift").onclick=function(){
+    document.getElementById("gate").classList.add("gone");
+    confetti();
+    for(var i=0;i<10;i++)setTimeout(petal,i*250);
+    petalTimer=setInterval(petal,1200);
+  };
+  document.getElementById("party").onclick=confetti;
+  var fin=document.querySelector(".final"),fired=false;
+  new IntersectionObserver(function(es){if(es[0].isIntersecting&&!fired){fired=true;setTimeout(confetti,600);}},{threshold:.5}).observe(fin);
+  document.getElementById("secret").onclick=function(){
+    var m=document.getElementById("secretMsg");m.classList.add("show");confetti();
+    setTimeout(function(){m.classList.remove("show");},3500);
+  };
+})();
+</script>
+</body>
+</html>
